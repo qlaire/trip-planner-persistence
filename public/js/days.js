@@ -98,6 +98,8 @@ var daysModule = (function () {
           // var dayActivities = day.getActivities();
           return dayModule.create({number: day.number});
         });
+        currentDay = days[0];
+        currentDay.show();
       })
     },
 
