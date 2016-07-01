@@ -23,12 +23,12 @@ router.get('/:id', function(req, res, next) {
   .catch(next);
 });
 
-router.post('/add/:id', function(req, res, next) {
-  Day.findOrCreate({where: {number: req.params.id}})
+router.post('/add/:dayNum', function(req, res, next) {
+  Day.findOrCreate({where: {number: req.params.dayNum} })
   .then(function (day) {
     res.json(day);
   })
-  .catch(next)
+  .catch(next);
 });
 
 router.post('/:id/:type', function(req, res, next) {

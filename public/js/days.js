@@ -45,15 +45,31 @@ var daysModule = (function () {
     $removeButton.on('click', deleteCurrentDay);
   });
 
-  function addDay () {
-    if (this && this.blur) this.blur(); // removes focus box from buttons
-    var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
-    days.push(newDay);
-    if (days.length === 1) {
-      currentDay = newDay;
-      switchTo(currentDay);
-    }
+  function addDay() {
+    if (this && this.blur) this.blur();
+    var dayNum = days.length + 1;
+    $.post('/api/days/add/' + dayNum)
+    .then(function (day) {
+      var newDay = dayModule.create({number: dayNum});
+      days.push(newDay);
+      if (day.number === 1) {
+        currentDay = newDay;
+        switchTo(currentDay);
+      }
+    }).catch(function (err) {
+      console.log(err)
+    });
   }
+
+  // function addDay () {
+  //   if (this && this.blur) this.blur(); // removes focus box from buttons
+  //   var newDay = dayModule.create({ number: days.length + 1 }); // dayModule
+  //   days.push(newDay);
+  //   if (days.length === 1) {
+  //     currentDay = newDay;
+  //     switchTo(currentDay);
+  //   }
+  // }
 
   function deleteCurrentDay () {
     // prevent deleting last day
@@ -75,7 +91,14 @@ var daysModule = (function () {
   var methods = {
 
     load: function () {
-      $(addDay);
+      $.get('/api/days')
+      .then(function(daysData) {
+        days = daysData.map(function(day) {
+          // var dayHotels = day.getHotels();
+          // var dayActivities = day.getActivities();
+          return dayModule.create({number: day.number});
+        });
+      })
     },
 
     switchTo: switchTo,
