@@ -25,6 +25,9 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dis
 // serve any other static files
 app.use(express.static(path.join(__dirname, '/public')));
 
+// serve api routes
+app.use('/api', require('./routes/api/attractions'));
+
 // serve dynamic routes
 app.use(require('./routes'));
 

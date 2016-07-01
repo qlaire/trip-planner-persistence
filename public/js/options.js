@@ -13,6 +13,10 @@
 $(function(){
 
   var $optionsPanel = $('#options-panel');
+  $.get('/api/hotels')
+
+
+
 
   // remember, second param of `forEach` is a `this` binding
   hotels.forEach(makeOption, $optionsPanel.find('#hotel-choices'));
