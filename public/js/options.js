@@ -15,7 +15,7 @@ $(function(){
   var $optionsPanel = $('#options-panel');
   var hotels, restaurants, activities;
   //name these functions?  if needed elsewhere
-  $.get('/api/hotels')
+  $.get('/api/attractions/hotels')
   .then(function (data) {
     hotels = data;
     hotels.forEach(makeOption, $optionsPanel.find('#hotel-choices'));
@@ -23,7 +23,7 @@ $(function(){
     console.log(error);
   });
 
-  $.get('/api/restaurants')
+  $.get('/api/attractions/restaurants')
   .then(function (data) {
     restaurants = data;
     restaurants.forEach(makeOption, $optionsPanel.find('#restaurant-choices'));
@@ -32,7 +32,7 @@ $(function(){
     console.log(error);
   });
 
-  $.get('/api/activities')
+  $.get('/api/attractions/activities')
   .then(function (data) {
     activities = data;
     activities.forEach(makeOption, $optionsPanel.find('#activity-choices'));

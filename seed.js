@@ -74,6 +74,10 @@ db.sync({force: true})
     });
   });
 })
+.then(function() {
+  var Day = db.model('day');
+  return Day.create({number: 1});
+})
 .then(function () {
   console.log("Finished inserting data");
 })

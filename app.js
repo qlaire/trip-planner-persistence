@@ -26,7 +26,10 @@ app.use('/jquery', express.static(path.join(__dirname, '/node_modules/jquery/dis
 app.use(express.static(path.join(__dirname, '/public')));
 
 // serve api routes
-app.use('/api', require('./routes/api/attractions'));
+app.use('/api/attractions', require('./routes/api/attractions'));
+
+// serve api for days
+app.use('/api/days', require('./routes/api/days'));
 
 // serve dynamic routes
 app.use(require('./routes'));
