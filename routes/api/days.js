@@ -31,8 +31,23 @@ router.post('/add/:dayNum', function(req, res, next) {
   .catch(next);
 });
 
-router.post('/:id/:type', function(req, res, next) {
+router.post('/addAttraction/:dayNum/:type/:id', function(req, res, next) {
   // add an attraction
+  console.log('in the route');
+  var currentDayPromise = Day.findOne({where: {number: req.params.dayNum}});
+  if (req.params.type === 'hotel') {
+    currentDayPromise.then(function(day) {
+      day.setHotel(req.params.id);
+    })
+    .then(function(day) {
+      console.log('the day is', day);
+      res.json(day);
+    })
+    .catch(next);
+  } else {
+    console.log('not there');
+  }
+
 });
 
 router.delete('/:id', function(req, res, next) {

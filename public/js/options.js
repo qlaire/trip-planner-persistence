@@ -61,6 +61,7 @@ $(function(){
     .find(':selected')
     .data()
     .obj;
+    console.log(attraction);
     daysModule.addToCurrent(attraction);
   });
 

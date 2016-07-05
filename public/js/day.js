@@ -98,6 +98,13 @@ var dayModule = (function () {
       case 'hotel':
         if (this.hotel) this.hotel.hide();
         this.hotel = attraction;
+        $.post('/api/days/addAttraction/' + this.number + '/hotel/' + attraction.id)
+        .then(function(day) {
+          var currentDay = day;
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
         break;
       case 'restaurant':
         utilsModule.pushUnique(this.restaurants, attraction);

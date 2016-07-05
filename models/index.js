@@ -4,7 +4,7 @@ var Place = require('./place');
 var Hotel = require('./hotel');
 var Restaurant = require('./restaurant');
 var Activity = require('./activity');
-var Day = require ('./day');
+var Day = require('./day');
 
 Hotel.belongsTo(Place);
 Restaurant.belongsTo(Place);
